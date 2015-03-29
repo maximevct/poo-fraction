@@ -5,22 +5,37 @@ private:
   int _denom;
   int _num;
 
+  int abs(int a) {
+    if (a < 0)
+      return -a;
+  }
+  
   void negative() {
-    if (_denom < 0)
-      -_denom;
-    if (_num > 0)
-      -_num;
+    -abs(_num);
+    abs(_denom);
   }
 
   void positive() {
     negative();
     -_num;
   }
+
+  int PGCD(int a, int b) {
+    return (b == 0) ? a : PGCD(b, a % b);
+  }
+
+  void reduce() {
+    int pgcd = PGCD(_num, _denom);
+    _num /= pgcd;
+    _denom /= pgcd;
+  }
 public:
   fraction(int n, int d) {
     _num = n;
     _denom = d;
-    (_num < 0 && _denom < 0) ? positive() : negative();
+    ((_num < 0 && _denom < 0)
+     || (_num > 0 && _denom > 0)) ? positive() : negative();
+    reduce();
   }
   ~fraction() {}
 
