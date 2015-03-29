@@ -27,14 +27,13 @@ int main() {
     << "a/9=" << a/9 << std::endl
     ;
 
-  // fraction(-2, 3) == -2/3
-  // fraction(2, -3) == -2/3
-  // fraction(-2, -3) == 2/3
-  // - fraction(2, 3) == -2/3
-  // - fraction(-2, 3) == 2/3
-  // - fraction(2, -3) == 2/3
-  // - fraction(-2, -3) == -2/3
-  
+  std::cout
+    << "fraction(-2, 3)=" << fraction(-2, 3) << std::endl
+    << "fraction(2, -3)=" << fraction(2, -3) << std::endl
+    << "fraction(-2,-3)=" << fraction(-2,-3) << std::endl
+    << "fraction( 2, 3)=" << fraction( 2, 3) << std::endl
+    ; 
+ 
   // 3/7
   std::cout << fraction(3,4)*fraction(4,5)*fraction(5,6)*fraction(6,7) << std::endl;
     return 0;
