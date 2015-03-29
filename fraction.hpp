@@ -44,7 +44,9 @@ public:
   fraction operator+(int val) const {
     return *this + fraction(val, 1);
   }
-  friend fraction operator+(int val, const fraction &f) { return f + val; }
+  friend fraction operator+(int val, const fraction &f) {
+    return f + val;
+  }
 
   /** SUBSTRACTION */
   fraction operator-(fraction f) const {
@@ -53,7 +55,9 @@ public:
   fraction operator-(int val) const {
     return *this - fraction(val, 1);
   }
-  friend fraction operator-(int val, const fraction &f) { return val + (-f); }
+  friend fraction operator-(int val, const fraction &f) {
+    return val + (-f);
+  }
 
   /** MULTIPLICATION **/
   fraction operator*(int val) const {
@@ -62,7 +66,9 @@ public:
   fraction operator*(fraction f) const {
     return fraction(_num * f.getNumerator(), _denom * f.getDenominator());
   }
-  friend fraction operator*(int val, const fraction &f) { return f * val; }
+  friend fraction operator*(int val, const fraction &f) {
+    return f * fraction(val, 1);
+  }
 
   /** DIVISION **/
   fraction operator/(int val) const {
