@@ -60,24 +60,24 @@ public:
   }
 
   /** MULTIPLICATION **/
-  fraction operator*(int val) const {
-    return fraction(_num * val, _denom * val);
-  }
   fraction operator*(fraction f) const {
     return fraction(_num * f.getNumerator(), _denom * f.getDenominator());
+  }
+  fraction operator*(int val) const {
+    return *this * fraction(val, 1);
   }
   friend fraction operator*(int val, const fraction &f) {
     return f * fraction(val, 1);
   }
 
   /** DIVISION **/
-  fraction operator/(int val) const {
-    return fraction(_num / val, _denom / val);
-  }
   fraction operator/(fraction f) const {
-    return fraction(_num / f.getNumerator(), _denom / f.getDenominator());
+    return *this * (~f);
   }
-  friend fraction operator/(int val, const fraction &f) { return f / val; }
+  fraction operator/(int val) const {
+    return *this / fraction(val, 1);
+  }
+  friend fraction operator/(int val, const fraction &f) { return val * (~f); }
 
 
   friend std::ostream &operator<<(std::ostream &os, const fraction &f) {
