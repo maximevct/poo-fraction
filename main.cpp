@@ -11,6 +11,8 @@ int main() {
     << "b=" << b << std::endl
     << "~a=" << ~a << std::endl
     << "~b=" << ~b << std::endl
+    << "-a=" << -a << std::endl
+    << "-b=" << -b << std::endl
     << "4+a=" << 4+a << std::endl
     << "a+4=" << a+4 << std::endl
     << "4-a=" << 4-a << std::endl
@@ -24,6 +26,14 @@ int main() {
     << "7/a=" << 7/a << std::endl
     << "a/9=" << a/9 << std::endl
     ;
+
+  // fraction(-2, 3) == -2/3
+  // fraction(2, -3) == -2/3
+  // fraction(-2, -3) == 2/3
+  // - fraction(2, 3) == -2/3
+  // - fraction(-2, 3) == 2/3
+  // - fraction(2, -3) == 2/3
+  // - fraction(-2, -3) == -2/3
   
   // 3/7
   std::cout << fraction(3,4)*fraction(4,5)*fraction(5,6)*fraction(6,7) << std::endl;
