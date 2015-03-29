@@ -96,7 +96,9 @@ public:
 
 
   friend std::ostream &operator<<(std::ostream &os, const fraction &f) {
-    os << f._num << "/" << f._denom;
+    os << f._num;
+    if (f._denom != 1)
+      os << "/" << f._denom;
     return os;
   }
 };
