@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 class fraction {
 private:
@@ -6,18 +7,17 @@ private:
   int _num;
 
   int abs(int a) {
-    if (a < 0)
-      return -a;
+    return (a < 0) ? -a : a;
   }
-  
+
   void negative() {
-    -abs(_num);
-    abs(_denom);
+    _num = -abs(_num);
+    _denom = abs(_denom);
   }
 
   void positive() {
     negative();
-    -_num;
+    _num = -_num;
   }
 
   int PGCD(int a, int b) {
@@ -25,17 +25,19 @@ private:
   }
 
   void reduce() {
-    int pgcd = PGCD(_num, _denom);
+    int pgcd = PGCD(abs(_num), abs(_denom));
     _num /= pgcd;
     _denom /= pgcd;
   }
 public:
   fraction(int n, int d) {
+    if (d == 0)
+      throw new std::logic_error("Divided by zero");
     _num = n;
     _denom = d;
+    reduce();
     ((_num < 0 && _denom < 0)
      || (_num > 0 && _denom > 0)) ? positive() : negative();
-    reduce();
   }
   ~fraction() {}
 
@@ -54,7 +56,7 @@ public:
   /** ADDITION **/
   fraction operator+(fraction f) const {
     return fraction(_num * f.getDenominator() + f.getNumerator() * _denom,
-		    _denom * f.getDenominator());
+		              _denom * f.getDenominator());
   }
   fraction operator+(int val) const {
     return *this + fraction(val, 1);

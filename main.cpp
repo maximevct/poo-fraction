@@ -5,8 +5,9 @@
 int main() {
   fraction a(4,3);
   fraction b(5,4);
-  
-  std::cout 
+
+  std::cout << "---------SUJET-----------" << std::endl;
+  std::cout
     << "a=" << a << std::endl
     << "b=" << b << std::endl
     << "~a=" << ~a << std::endl
@@ -25,16 +26,31 @@ int main() {
     << "a/b=" << a/b << std::endl
     << "7/a=" << 7/a << std::endl
     << "a/9=" << a/9 << std::endl
-    ;
+  ;
 
+  std::cout << "---------REDUCTION-----------" << std::endl;
+  // 3/7
+  std::cout << fraction(3,4)*fraction(4,5)*fraction(5,6)*fraction(6,7) << std::endl;
+
+  std::cout << "---------NEGATIVE-----------" << std::endl;
   std::cout
     << "fraction(-2, 3)=" << fraction(-2, 3) << std::endl
     << "fraction(2, -3)=" << fraction(2, -3) << std::endl
     << "fraction(-2,-3)=" << fraction(-2,-3) << std::endl
     << "fraction( 2, 3)=" << fraction( 2, 3) << std::endl
-    ; 
- 
-  // 3/7
-  std::cout << fraction(3,4)*fraction(4,5)*fraction(5,6)*fraction(6,7) << std::endl;
-    return 0;
+  ;
+
+  std::cout << "---------0/x-----------" << std::endl;
+  std::cout
+    << "fraction(0, 1)=" << fraction(0, 1) << std::endl
+    << "fraction(0, 5)=" << fraction(0, 5) << std::endl
+  ;
+
+  std::cout << "---------x/0-----------" << std::endl;
+  try {
+    fraction(1, 0);
+  } catch (...) {
+    std::cout << "OK" << std::endl;
+  }
+  return 0;
 }
