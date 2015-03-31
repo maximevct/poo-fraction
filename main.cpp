@@ -75,5 +75,17 @@ int main() {
   } catch (...) {
     std::cout << "0 / 1/0" << std::endl;
   }
+
+  std::cout << "---------RACCOURCIS-----------" << std::endl;
+  fraction aBis(a);
+  int quatre = 4;
+  aBis -= 4;
+  std::cout << "aBis-=4=" << aBis << std::endl;
+  aBis += 4;
+  std::cout << "aBis+=4=" << aBis << std::endl;
+  aBis *= 4;
+  std::cout << "aBis*=4=" << aBis << std::endl;
+  aBis /= 4;
+  std::cout << "aBis/=4=" << aBis << std::endl;
   return 0;
 }

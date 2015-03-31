@@ -39,10 +39,21 @@ public:
     ((_num < 0 && _denom < 0)
      || (_num > 0 && _denom > 0)) ? positive() : negative();
   }
+  fraction(const fraction &f) {
+    _num = f.getNumerator();
+    _denom = f.getDenominator();
+ }
+  fraction &operator=(const fraction &f) {
+    if (&f != this) {
+      _num = f.getNumerator();
+      _denom = f.getDenominator();
+    }
+    return *this;
+  }
   ~fraction() {}
 
-  const int getNumerator() { return _num; }
-  const int getDenominator() { return _denom; }
+  const int getNumerator()   const { return _num; }
+  const int getDenominator() const { return _denom; }
 
   /** UNARY **/
   fraction operator~() const {
@@ -64,6 +75,10 @@ public:
   fraction operator+(int val) const {
     return *this + fraction(val, 1);
   }
+  fraction &operator+=(int val) {
+    *this = *this + val;
+    return *this;
+  }
   friend fraction operator+(int val, const fraction &f) {
     return f + val;
   }
@@ -74,6 +89,10 @@ public:
   }
   fraction operator-(int val) const {
     return *this - fraction(val, 1);
+  }
+  fraction &operator-=(int val) {
+    *this = *this - val;
+    return *this;
   }
   friend fraction operator-(int val, const fraction &f) {
     return val + (-f);
@@ -86,9 +105,14 @@ public:
   fraction operator*(int val) const {
     return *this * fraction(val, 1);
   }
+  fraction &operator*=(int val) {
+    *this = *this * val;
+    return *this;
+  }
   friend fraction operator*(int val, const fraction &f) {
     return f * fraction(val, 1);
   }
+
 
   /** DIVISION **/
   fraction operator/(fraction f) const {
@@ -97,9 +121,15 @@ public:
   fraction operator/(int val) const {
     return *this / fraction(val, 1);
   }
-  friend fraction operator/(int val, const fraction &f) { return val * (~f); }
+  fraction &operator/=(int val) {
+    *this = *this / val;
+    return *this;
+  }
+  friend fraction operator/(int val, const fraction &f) {
+    return val * (~f);
+  }
 
-
+  /** STREAM **/
   friend std::ostream &operator<<(std::ostream &os, const fraction &f) {
     os << f._num;
     if (f._denom != 1)
