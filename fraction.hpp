@@ -52,6 +52,9 @@ public:
   fraction operator-() const {
     return fraction(-_num, _denom);
   }
+  fraction operator+() const {
+    return fraction(_num, _denom);
+  }
 
   /** ADDITION **/
   fraction operator+(fraction f) const {

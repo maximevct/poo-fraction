@@ -14,6 +14,8 @@ int main() {
     << "~b=" << ~b << std::endl
     << "-a=" << -a << std::endl
     << "-b=" << -b << std::endl
+    << "+a=" << +a << std::endl
+    << "+b=" << +b << std::endl
     << "4+a=" << 4+a << std::endl
     << "a+4=" << a+4 << std::endl
     << "4-a=" << 4-a << std::endl
@@ -38,6 +40,10 @@ int main() {
     << "fraction(2, -3)=" << fraction(2, -3) << std::endl
     << "fraction(-2,-3)=" << fraction(-2,-3) << std::endl
     << "fraction( 2, 3)=" << fraction( 2, 3) << std::endl
+    << "+fraction(-2, 3)=" << fraction(-2, 3) << std::endl
+    << "+fraction(2, -3)=" << fraction(2, -3) << std::endl
+    << "+fraction(-2,-3)=" << fraction(-2,-3) << std::endl
+    << "+fraction( 2, 3)=" << fraction( 2, 3) << std::endl
   ;
 
   std::cout << "---------0/x-----------" << std::endl;
@@ -50,7 +56,24 @@ int main() {
   try {
     fraction(1, 0);
   } catch (...) {
-    std::cout << "OK" << std::endl;
+    std::cout << "1/0" << std::endl;
+  }
+
+  std::cout << "---------DIVISION_BY_ZERO-----------" << std::endl;
+  try {
+    fraction(1, 0) / 0;
+  } catch (...) {
+    std::cout << "1/0 / 0" << std::endl;
+  }
+  try {
+    fraction(1, 0) / fraction(1, 0);
+  } catch (...) {
+    std::cout << "1/0 / 1/0" << std::endl;
+  }
+  try {
+    0 / fraction(1, 0);
+  } catch (...) {
+    std::cout << "0 / 1/0" << std::endl;
   }
   return 0;
 }
